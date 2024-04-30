@@ -32,6 +32,7 @@ public class CaffeineTest {
     }
 
     /*
+     测试：
      基于大小设置驱逐策略：
      */
     @Test
@@ -45,7 +46,8 @@ public class CaffeineTest {
         cache.put("gf1", "柳岩");
         cache.put("gf2", "范冰冰");
         cache.put("gf3", "迪丽热巴");
-        // 延迟10ms，给清理线程一点时间
+        // 延迟10ms，给清理线程一点时间(因为Caffeine是不会立即清理的，而是会等待一段时间。所以这里让主线程等待一部分
+        // 时间，让清理线程清理一次)
         Thread.sleep(10L);
         // 获取数据
         System.out.println("gf1: " + cache.getIfPresent("gf1"));
@@ -54,6 +56,7 @@ public class CaffeineTest {
     }
 
     /*
+     测试：
      基于时间设置驱逐策略：
      */
     @Test
