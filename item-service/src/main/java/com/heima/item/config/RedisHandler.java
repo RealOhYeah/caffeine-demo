@@ -49,4 +49,29 @@ public class RedisHandler implements InitializingBean {
             redisTemplate.opsForValue().set("item:stock:id:" + stock.getId(), json);
         }
     }
+
+
+    /**
+     * Canal监察数据库的变化，将新增/修改的内容写入到JVM缓存中和Redis缓存中
+     * @param item
+     */
+    public void saveItem(Item item) {
+        try {
+            String json = MAPPER.writeValueAsString(item);
+            redisTemplate.opsForValue().set("item:id:" + item.getId(), json);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    /**
+     * Canal监察数据库的变化，将需要删除的内容在JVM缓存中和Redis缓存中删除
+     * @param id
+     */
+    public void deleteItemById(Long id) {
+        redisTemplate.delete("item:id:" + id);
+    }
+
+
 }
