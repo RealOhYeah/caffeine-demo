@@ -34,7 +34,7 @@ public class CaffeineTest {
 
     /*
      测试：
-     基于大小设置驱逐策略：
+     Cache基于大小设置驱逐策略：
      */
     @Test
     void testEvictByNum() throws InterruptedException {
@@ -58,7 +58,7 @@ public class CaffeineTest {
 
     /*
      测试：
-     基于时间设置驱逐策略：
+     Cache基于时间设置驱逐策略：
      */
     @Test
     void testEvictByTime() throws InterruptedException {

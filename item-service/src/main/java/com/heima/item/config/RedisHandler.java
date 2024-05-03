@@ -13,6 +13,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ *
+ */
 @Component
 public class RedisHandler implements InitializingBean {
 
@@ -26,6 +29,10 @@ public class RedisHandler implements InitializingBean {
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
+    /**
+     * 缓存预热（从数据库中查询信息后存储在redis中）
+     * @throws Exception
+     */
     @Override
     public void afterPropertiesSet() throws Exception {
         // 初始化缓存

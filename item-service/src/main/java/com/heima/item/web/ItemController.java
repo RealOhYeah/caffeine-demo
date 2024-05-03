@@ -28,6 +28,12 @@ public class ItemController {
     private Cache<Long,ItemStock> stockCache;
 
 
+    /**
+     * 分页查询商品
+     * @param page
+     * @param size
+     * @return
+     */
     @GetMapping("list")
     public PageDTO queryItemPage(
             @RequestParam(value = "page", defaultValue = "1") Integer page,
@@ -48,26 +54,47 @@ public class ItemController {
         return new PageDTO(result.getTotal(), list);
     }
 
+    /**
+     * 保存商品
+     * @param item
+     */
     @PostMapping
     public void saveItem(@RequestBody Item item){
         itemService.saveItem(item);
     }
 
+    /**
+     * 更新商品
+     * @param item
+     */
     @PutMapping
     public void updateItem(@RequestBody Item item) {
         itemService.updateById(item);
     }
 
+    /**
+     * 更新商品库存
+     * @param itemStock
+     */
     @PutMapping("stock")
     public void updateStock(@RequestBody ItemStock itemStock){
         stockService.updateById(itemStock);
     }
 
+    /**
+     * 删除商品
+     * @param id
+     */
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable("id") Long id){
         itemService.update().set("status", 3).eq("id", id).update();
     }
 
+    /**
+     * 根据id查询商品（先去命中JVM缓存再找数据库）
+     * @param id
+     * @return
+     */
     @GetMapping("/{id}")
     public Item findById(@PathVariable("id") Long id){
 
@@ -86,6 +113,11 @@ public class ItemController {
 
     }
 
+    /**
+     * 根据id查询商品库存（先去命中JVM缓存再找数据库）
+     * @param id
+     * @return
+     */
     @GetMapping("/stock/{id}")
     public ItemStock findStockById(@PathVariable("id") Long id){
 

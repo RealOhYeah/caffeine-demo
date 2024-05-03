@@ -10,6 +10,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class CaffeineConfig {
 
+    /**
+     * 创建一个Cache<Long, Item>缓存对象
+     * @return
+     */
     @Bean
     public Cache<Long, Item> itemCache(){
         return Caffeine.newBuilder()
@@ -18,6 +22,10 @@ public class CaffeineConfig {
                 .build();
     }
 
+    /**
+     * 创建一个Cache<Long, ItemStock>缓存对象
+     * @return
+     */
     @Bean
     public Cache<Long, ItemStock> stockCache(){
         return Caffeine.newBuilder()

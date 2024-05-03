@@ -15,10 +15,14 @@ public class ItemApplication {
         SpringApplication.run(ItemApplication.class, args);
     }
 
-    @Bean
-    public MybatisPlusInterceptor mybatisPlusInterceptor() {
-        MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
-        interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
-        return interceptor;
-    }
+    /**
+     * @description: mybatis-plus分页拦截
+     * @return
+     */
+        @Bean
+        public MybatisPlusInterceptor mybatisPlusInterceptor() {
+            MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+            interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
+            return interceptor;
+        }
 }
