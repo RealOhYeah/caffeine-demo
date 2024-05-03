@@ -8,8 +8,9 @@ import java.time.Duration;
 
 public class CaffeineTest {
 
-    /*
-      基本用法测试
+
+    /**
+     * JVM进程缓存测试
      */
     @Test
     void testBasicOps() {
