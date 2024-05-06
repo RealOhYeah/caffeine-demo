@@ -16,12 +16,14 @@ public class ItemApplication {
     }
 
     /**
-     * @description: mybatis-plus分页拦截
-     * @return
+     * @description: mybatis-plus分页插件
+     * @return MybatisPlusInterceptor
      */
         @Bean
         public MybatisPlusInterceptor mybatisPlusInterceptor() {
+            // 初始化核心插件
             MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+            // 添加分页插件
             interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
             return interceptor;
         }
